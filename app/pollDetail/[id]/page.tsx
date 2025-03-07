@@ -68,6 +68,13 @@ export default function PollDetailPage() {
 
   return (
     <div className="flex h-screen overflow-hidden bg-gray-100">
+      {/* Sidebar - hidden on mobile */}
+      <div className="hidden md:block w-1/4 bg-[#1e1e2d] text-white">
+        <div className="h-screen relative">
+          {isMounted && <Image src="/imag.png" alt="Logo" fill priority />}
+        </div>
+      </div>
+
       {/* Main Content */}
       <div className="flex-1 flex flex-col overflow-scroll">
         {/* Header */}
