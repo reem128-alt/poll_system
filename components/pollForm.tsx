@@ -239,21 +239,21 @@ export default function PollForm({ onSubmitAction, initialData, isLoading = fals
                             {Array.from({ length: answersCount[questionIndex] || 2 }).map((_, answerIndex) => (
                               <div 
                                 key={`question-${questionIndex}-answer-${answerIndex}`} 
-                                className="flex gap-3 items-center bg-white p-3 rounded-lg shadow-sm hover:shadow-md transition-all duration-200 border border-gray-100"
+                                className="flex flex-col sm:flex-row gap-3 items-start sm:items-center bg-white p-3 rounded-lg shadow-sm hover:shadow-md transition-all duration-200 border border-gray-100"
                               >
                                 <div className="bg-[#1e1e2d] text-white w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold shadow-sm">
                                   {answerIndex + 1}
                                 </div>
-                                <div className="flex-1 relative">
+                                <div className="w-full sm:flex-1 relative">
                                   <Input
                                     {...register(`questions.${questionIndex}.answers.${answerIndex}.text` as const, {
                                       required: 'نص الإجابة مطلوب',
                                     })}
                                     placeholder="نص الإجابة"
-                                    className="flex-1 border border-gray-200 focus:border-[#009688] transition-all rounded-lg"
+                                    className="w-full border border-gray-200 focus:border-[#009688] transition-all rounded-lg"
                                   />
                                 </div>
-                                <div className="relative w-24">
+                                <div className="relative w-full sm:w-24 mt-2 sm:mt-0">
                                   <Input
                                     type="number"
                                     {...register(`questions.${questionIndex}.answers.${answerIndex}.points` as const, {
