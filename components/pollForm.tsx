@@ -83,6 +83,13 @@ export default function PollForm({ onSubmitAction, initialData, isLoading = fals
  
   // Remove an answer from a specific question
  
+  // Add a new answer to a specific question
+  const addAnswer = (questionIndex: number) => {
+    setAnswersCount((prev) => ({
+      ...prev,
+      [questionIndex]: (prev[questionIndex] || 2) + 1,
+    }));
+  };
 
   return (
     <form onSubmit={handleSubmit(onFormSubmit)} className="space-y-8" dir="rtl">
@@ -219,7 +226,13 @@ export default function PollForm({ onSubmitAction, initialData, isLoading = fals
                               </div>
                               الإجابات ({answersCount[questionIndex] || 2})
                             </Label>
-                            {/* Removed "Add Answer" button */}
+                            <Button 
+                              type="button" 
+                              onClick={() => addAnswer(questionIndex)}
+                              className="bg-[#009688] hover:bg-[#00796b] text-white text-sm py-1 px-3 rounded-lg transition-all shadow-sm hover:shadow-md flex items-center gap-1"
+                            >
+                              <span className="text-white">+</span> اضف جواب
+                            </Button>
                           </div>
 
                           <div className="space-y-3 mt-3 bg-gray-50 p-4 rounded-lg">
