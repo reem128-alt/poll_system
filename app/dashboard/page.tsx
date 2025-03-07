@@ -267,50 +267,50 @@ export default function Page() {
   if (error) return <div className="flex h-screen items-center justify-center text-red-500">{error}</div>
 
   return (
-    <div className="flex h-screen bg-gray-100">
+    <div className="flex flex-col md:flex-row min-h-screen bg-gray-100 overflow-hidden">
       {/* Sidebar */}
-      <div className="w-52 bg-[#1e1e2d] text-white">
-      <div className="h-screen relative">
-          <Image src="/imag.png" alt="Logo" fill priority />
+      <div className="w-full md:w-52 bg-[#1e1e2d] text-white">
+        <div className="h-20 md:h-screen relative">
+          <Image src="/imag.png" alt="Logo" fill priority className="object-contain md:object-cover" />
         </div>
       </div>
 
       {/* Main Content */}
-      <div className="flex-1 flex flex-col">
+      <div className="flex-1 flex flex-col max-h-screen">
         {/* Header */}
-        <header className="bg-white p-4 shadow-sm flex justify-between items-center">
+        <header className="bg-white p-3 md:p-4 shadow-sm flex justify-between items-center">
           {/* Search */}
-          <div className="relative w-1/2" dir="rtl">
+          <div className="relative w-full md:w-1/2" dir="rtl">
             <Input 
               placeholder="بحث..." 
-              className="pl-10 pr-4 py-2 w-full rounded-md border border-gray-300" 
+              className="pl-10 pr-4 py-1 md:py-2 w-full rounded-md border border-gray-300" 
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
-            <Search className="absolute left-3 top-2.5 h-5 w-5 text-gray-400" />
+            <Search className="absolute left-3 top-2 md:top-2.5 h-4 w-4 md:h-5 md:w-5 text-gray-400" />
           </div>
 
           {/* User Info */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 md:gap-4">
             <div className="relative">
               <Button variant="ghost" size="icon" className="relative">
                 <span className="sr-only">الإشعارات</span>
-                <div className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full text-[10px] text-white flex items-center justify-center">
+                <div className="absolute -top-1 -right-1 w-3 h-3 md:w-4 md:h-4 bg-red-500 rounded-full text-[8px] md:text-[10px] text-white flex items-center justify-center">
                   1
                 </div>
-                <Bell className="h-6 w-6" />
+                <Bell className="h-5 w-5 md:h-6 md:w-6" />
               </Button>
             </div>
             <div className="text-right">
-              <h3 className="font-bold">اسم المدير</h3>
-              <p className="text-sm text-gray-500">مرحبا بك</p>
+              <h3 className="font-bold text-sm md:text-base">اسم المدير</h3>
+              <p className="text-xs md:text-sm text-gray-500">مرحبا بك</p>
             </div>
-            <div className="h-10 w-10 rounded-full bg-gray-200"></div>
+            <div className="h-8 w-8 md:h-10 md:w-10 rounded-full bg-gray-200"></div>
           </div>
         </header>
 
         {/* Main Content */}
-        <main className="flex-1 p-6 overflow-auto" dir="rtl">
+        <main className="flex-1 p-3 md:p-6 overflow-auto" dir="rtl">
           {showPollForm ? (
             <div className="bg-white rounded-lg shadow p-6">
               <div className="flex justify-between items-center mb-6">
@@ -356,9 +356,31 @@ export default function Page() {
               </div>
 
               {/* Table */}
-              <div className="rtl-table-container">
-                <div className="rtl-table-wrapper">
-                  <table className="min-w-full divide-y divide-gray-200" dir="rtl">
+              <div 
+                className="rtl-table-container overflow-x-auto w-full" 
+                style={{ 
+                  WebkitOverflowScrolling: 'touch',
+                  scrollbarWidth: 'thin', /* For Firefox */
+                  msOverflowStyle: 'none', /* For Internet Explorer and Edge */
+                }}
+              >
+                <style jsx>{`
+                  .rtl-table-container::-webkit-scrollbar {
+                    height: 4px;
+                  }
+                  .rtl-table-container::-webkit-scrollbar-track {
+                    background: #f1f1f1;
+                  }
+                  .rtl-table-container::-webkit-scrollbar-thumb {
+                    background: #888;
+                    border-radius: 4px;
+                  }
+                  .rtl-table-container::-webkit-scrollbar-thumb:hover {
+                    background: #555;
+                  }
+                `}</style>
+                <div className="rtl-table-wrapper min-w-max">
+                  <table className="w-full divide-y divide-gray-200" dir="rtl">
                     <thead className="bg-gray-50">
                       <tr>
                         <th scope="col" className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">الاسم</th>
@@ -424,7 +446,7 @@ export default function Page() {
               </div>
 
               {/* Pagination */}
-              <div className="mt-6 text-center">
+              <div className="mt-4 md:mt-6 text-center pb-4">
                 <button className="text-gray-500 hover:text-gray-700">عرض المزيد</button>
               </div>
             </div>
