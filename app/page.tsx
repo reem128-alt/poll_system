@@ -7,6 +7,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { fetchPolls, type Poll } from "@/lib/services/poll"
 import { Loader } from "@/components/ui/loader"
+import { LogOut } from "lucide-react"
 
 export default function HomePage() {
   const [polls, setPolls] = useState<Poll[]>([])
@@ -78,14 +79,28 @@ export default function HomePage() {
             <div className="flex items-center">
               <h1 className="text-2xl font-bold text-gray-800 md:hidden">نظام الاستطلاعات</h1>
             </div>
-            <div>
+            <div className="flex items-center gap-2">
               {isAuthenticated ? (
-                <Button 
-                  onClick={() => router.push('/dashboard')}
-                  className="bg-[#008080] hover:bg-[#006666] text-white"
-                >
-                  لوحة التحكم
-                </Button>
+                <>
+                  <Button 
+                    onClick={() => router.push('/dashboard')}
+                    className="bg-[#008080] hover:bg-[#006666] text-white"
+                  >
+                    لوحة التحكم
+                  </Button>
+                  <Button 
+                    variant="outline" 
+                    className="text-[#008080] border-[#008080] hover:bg-red-50"
+                    onClick={() => {
+                      localStorage.removeItem('token');
+                      setIsAuthenticated(false);
+                      router.push('/login');
+                    }}
+                  >
+                    <LogOut className="h-4 w-4 mr-1" />
+                    تسجيل الخروج
+                  </Button>
+                </>
               ) : (
                 <Button 
                   onClick={() => router.push('/login')}
