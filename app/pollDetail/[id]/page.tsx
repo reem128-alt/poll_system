@@ -85,6 +85,11 @@ export default function PollDetailPage() {
                 <Home className="h-5 w-5" />
               </Button>
             </Link>
+            <Link href="/dashboard">
+              <Button variant="outline" className="flex items-center gap-1">
+                <span>العودة للوحة التحكم</span>
+              </Button>
+            </Link>
             <h1 className="text-xl font-bold t" >تفاصيل الاستطلاع</h1>
           </div>
         </header>
