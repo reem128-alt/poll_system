@@ -268,10 +268,10 @@ export default function Page() {
 
   return (
     <div className="flex flex-col md:flex-row min-h-screen bg-gray-100 overflow-hidden">
-      {/* Sidebar */}
-      <div className="w-full md:w-52 bg-[#1e1e2d] text-white">
-        <div className="h-20 md:h-screen relative">
-          <Image src="/imag.png" alt="Logo" fill priority className="object-contain md:object-cover" />
+      {/* Sidebar - hidden on mobile/small screens */}
+      <div className="hidden md:block w-52 bg-[#1e1e2d] text-white">
+        <div className="h-screen relative">
+          <Image src="/imag.png" alt="Logo" fill priority className="object-cover" />
         </div>
       </div>
 
