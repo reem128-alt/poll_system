@@ -91,6 +91,10 @@ export default function PollForm({ onSubmitAction, initialData, isLoading = fals
     }));
   };
 
+  const handleUpdate = () => {
+    handleSubmit(onFormSubmit)();
+  };
+
   return (
     <form onSubmit={handleSubmit(onFormSubmit)} className="space-y-8" dir="rtl">
       <div className="relative">
@@ -226,13 +230,15 @@ export default function PollForm({ onSubmitAction, initialData, isLoading = fals
                               </div>
                               الإجابات ({answersCount[questionIndex] || 2})
                             </Label>
-                            <Button 
-                              type="button" 
-                              onClick={() => addAnswer(questionIndex)}
-                              className="bg-[#009688] hover:bg-[#00796b] text-white text-sm py-1 px-3 rounded-lg transition-all shadow-sm hover:shadow-md flex items-center gap-1"
-                            >
-                              <span className="text-white">+</span> اضف جواب
-                            </Button>
+                            {!initialData && (
+                              <Button 
+                                type="button" 
+                                onClick={() => addAnswer(questionIndex)}
+                                className="bg-[#009688] hover:bg-[#00796b] text-white text-sm py-1 px-3 rounded-lg transition-all shadow-sm hover:shadow-md flex items-center gap-1"
+                              >
+                                <span className="text-white">+</span> اضف جواب
+                              </Button>
+                            )}
                           </div>
 
                           <div className="space-y-3 mt-3 bg-gray-50 p-4 rounded-lg">
@@ -282,9 +288,10 @@ export default function PollForm({ onSubmitAction, initialData, isLoading = fals
               type="submit" 
               className="w-full bg-gradient-to-r from-[#009688] to-[#00796b] hover:from-[#00796b] hover:to-[#005a4f] text-white text-lg py-6 rounded-xl transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1 flex items-center justify-center gap-2"
               disabled={isLoading}
+              onClick={initialData ? handleUpdate : undefined}
             >
               <Save className="h-5 w-5" />
-              {isLoading ? 'جاري الحفظ...' : 'حفظ الاستطلاع'}
+              {isLoading ? 'جاري الحفظ...' : initialData ? 'تحديث الاستطلاع' : 'حفظ الاستطلاع'}
               {!isLoading && <CheckCircle2 className="h-5 w-5 ml-1" />}
             </Button>
           </CardFooter>
