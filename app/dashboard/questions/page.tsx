@@ -100,18 +100,6 @@ function QuestionsContent() {
 
   return (
     <div className="flex h-screen bg-gray-100">
-      {/* Sidebar */}
-      <div className="w-48 bg-[#1e1e2d] text-white">
-        <div className="h-screen relative">
-          <Image 
-            src="/imag.png"
-            alt="Logo"
-            fill
-            priority
-          />
-        </div>
-      </div>
-
       {/* Main Content */}
       <div className="flex-1 flex flex-col">
         {/* Header */}
