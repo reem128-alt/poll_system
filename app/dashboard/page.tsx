@@ -1,6 +1,6 @@
 "use client"
 
-import { Search, Bell, Pencil, Trash2 } from "lucide-react"
+import { Search, Bell, Pencil, Trash2, LogOut, Home } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import Image from "next/image"
@@ -292,6 +292,16 @@ export default function Page() {
 
           {/* User Info */}
           <div className="flex items-center gap-2 md:gap-4">
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              className="text-[#009688] hover:bg-green-50"
+              onClick={() => router.push('/')}
+              title="الصفحة الرئيسية"
+            >
+              <Home className="h-5 w-5 md:h-6 md:w-6" />
+              <span className="sr-only">الصفحة الرئيسية</span>
+            </Button>
             <div className="relative">
               <Button variant="ghost" size="icon" className="relative">
                 <span className="sr-only">الإشعارات</span>
@@ -301,6 +311,19 @@ export default function Page() {
                 <Bell className="h-5 w-5 md:h-6 md:w-6" />
               </Button>
             </div>
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              className="text-red-500 hover:text-red-700"
+              onClick={() => {
+                localStorage.removeItem('token');
+                router.push('/login');
+              }}
+              title="تسجيل الخروج"
+            >
+              <LogOut className="h-5 w-5 md:h-6 md:w-6" />
+              <span className="sr-only">تسجيل الخروج</span>
+            </Button>
             <div className="text-right">
               <h3 className="font-bold text-sm md:text-base">اسم المدير</h3>
               <p className="text-xs md:text-sm text-gray-500">مرحبا بك</p>
