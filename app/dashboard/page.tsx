@@ -468,10 +468,7 @@ export default function Page() {
                 </div>
               </div>
 
-              {/* Pagination */}
-              <div className="mt-4 md:mt-6 text-center pb-4">
-                <button className="text-gray-500 hover:text-gray-700">عرض المزيد</button>
-              </div>
+            
             </div>
           )}
         </main>
